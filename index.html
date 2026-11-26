@@ -5,9 +5,9 @@
 <style>
 :root{--bg:#ffffff;--sf:#fff;--tx:#14213a;--mu:#5b667a;--bd:#e0e5ee;--ac:#1d4ed8;--al:#e6edff;--ok:#0f8a5f;--okl:#e2f6ee;--wn:#b45309;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font:400 15px/1.55 'Plus Jakarta Sans',system-ui,Arial,sans-serif}
-a{color:inherit}h1,h2,h3{margin:0;line-height:1.2;letter-spacing:-.01em}h1{font-size:clamp(28px,5vw,44px);font-weight:800}h2{font-size:24px;font-weight:800}h3{font-size:17px;font-weight:600}
-.w{max-width:1120px;margin:0 auto;padding:0 18px}.sec{padding:36px 0}
+html,body{max-width:100%;overflow-x:clip}body{margin:0;background:var(--bg);color:var(--tx);font:400 clamp(16px,.95rem + .15vw,17px)/1.6 'Plus Jakarta Sans',system-ui,Arial,sans-serif;overflow-wrap:break-word;-webkit-text-size-adjust:100%}
+a{color:inherit}h1,h2,h3{margin:0;line-height:1.2;letter-spacing:-.01em}h1{font-size:clamp(28px,5vw,44px);font-weight:800}h2{font-size:clamp(20px,2.2vw + 12px,26px);font-weight:800}h3{font-size:17px;font-weight:600}
+.w{max-width:1120px;width:100%;margin:0 auto;padding:0 clamp(14px,4vw,28px)}.sec{padding:36px 0}
 header{background:var(--sf);border-bottom:1px solid var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
 .nav{display:flex;align-items:center;gap:16px;min-height:60px;flex-wrap:wrap}
 .logo{font-weight:800;font-size:22px;cursor:pointer;color:var(--ac);margin-right:auto}.nav a{cursor:pointer;text-decoration:none;font-weight:500;color:var(--mu)}.nav a:hover{color:var(--tx)}
@@ -34,9 +34,42 @@ footer{border-top:1px solid var(--bd);background:var(--sf);padding:28px 0;margin
 .tx{max-width:70ch}.stp{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .cal{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;font-size:12px;text-align:center}.cal div{padding:8px 2px;border-radius:6px;background:var(--bg)}.cal .b{background:var(--al)}
 @media(prefers-reduced-motion:no-preference){.card{transition:border-color .15s}}
+/* ===== Responsive : grand écran, tablette, mobile ===== */
+img,svg,video{max-width:100%;height:auto}.card,.pc>div,.cat>div,.row>*{min-width:0}
+.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))}
+.bg{display:none;width:44px;height:44px;border:1px solid var(--bd);border-radius:8px;background:var(--sf);color:var(--tx);font-size:20px;line-height:1;cursor:pointer;align-items:center;justify-content:center}
+.mn{display:flex;align-items:center;gap:16px;flex-wrap:wrap}#ua{display:inline-flex;align-items:center;gap:16px}
+@media(min-width:821px) and (max-width:1024px){.two{grid-template-columns:230px 1fr}.two.r{grid-template-columns:1fr 300px}.hero{padding-top:40px}}
+@media(max-width:820px){
+.nav{flex-wrap:nowrap;position:relative}.bg{display:inline-flex}
+.mn{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--sf);border-bottom:1px solid var(--bd);box-shadow:0 12px 24px rgba(20,33,58,.1);padding:6px clamp(14px,4vw,28px) 16px;max-height:calc(100vh - 64px);overflow-y:auto}
+.mn.open{display:flex}.mn>a,#ua a{padding:14px 2px;border-bottom:1px solid var(--bd);font-size:16px;color:var(--tx)}
+#ua{display:flex;flex-direction:column;gap:0}#ua .btn{margin-top:12px;border:1px solid var(--ac);border-radius:8px;text-align:center;padding:13px;color:#fff!important}
+}
+/* ===== Optimisation téléphone uniquement (≤ 700 px) : le rendu PC n’est pas modifié ===== */
+@media(max-width:700px){
+body{overflow-x:hidden}
+.w{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+.sec{padding:22px 0}h2{font-size:20px}.stat{font-size:22px}
+.nav{min-height:56px}.logo{font-size:20px}h1[style]{font-size:clamp(22px,6.5vw,30px)!important}.mu{font-size:14px}.bdg{font-size:13px}
+
+
+.hero{padding:26px 0 24px}.hero h1{font-size:25px}.hero h1 br{display:none}
+.sb{flex-direction:column;gap:0;padding:6px}.sb input,.sb input+input{flex:1 1 auto;width:100%;border-left:0}.sb input+input{border-top:1px solid var(--bd)}.sb .btn{width:100%;padding:13px}.sb form{flex-direction:column;align-items:stretch}
+.chips{flex-wrap:nowrap;overflow-x:auto;margin-right:-14px;padding-bottom:4px;-webkit-overflow-scrolling:touch}.chip{white-space:nowrap;flex:none;padding:8px 14px}
+input,select,textarea{min-height:44px;font-size:16px}input[type=checkbox]{min-height:0;width:22px!important;height:22px}input[type=range]{padding:0}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}.btn.s{min-height:40px}.tab{padding:10px 14px}.tabs{flex-wrap:wrap}
+.grid,.grid[style]{grid-template-columns:1fr!important}
+.card{padding:14px}.pc{gap:12px}.av{width:48px;height:48px}
+.two,.two.r{gap:14px}aside .card,.two>aside{position:static!important}.two>aside label{margin:8px 0 3px}
+.tb td,.tb th{padding:9px 4px;font-size:13px}.tb td .btn,.tb td button{white-space:nowrap}
+.card.row.sp .btn{width:100%}
+.cal{gap:4px;font-size:11px}
+footer .row{flex-direction:column;align-items:flex-start;gap:6px}
+}
 </style></head><body>
-<header><div class="w nav"><span class="logo" onclick="go('home')" tabindex="0">certia</span>
-<a onclick="go('categories')">Catégories</a><a onclick="go('about')">Comment ça marche</a><a onclick="S.t='pro';go('signup')">Devenir professionnel</a><a onclick="go('contact')">Aide</a><span id="ua"></span></div></header>
+<header><div class="w nav"><span class="logo" onclick="go('home')" tabindex="0">certia</span><button id="bg" class="bg" type="button" aria-label="Ouvrir le menu" aria-controls="mn" aria-expanded="false" onclick="tg()">☰</button><nav id="mn" class="mn" aria-label="Navigation principale">
+<a onclick="go('categories')">Catégories</a><a onclick="go('about')">Comment ça marche</a><a onclick="S.t='pro';go('signup')">Devenir professionnel</a><a onclick="go('contact')">Aide</a><span id="ua"></span></nav></div></header>
 <main id="app"></main>
 <footer><div class="w row sp"><span>© 2026 Certia – Prototype de démonstration. Professionnels, avis et paiements fictifs : aucune transaction ni vérification réelle n’est effectuée.</span><span class="row"><a href="#about">À propos</a><a href="#contact">Contact</a></span></div></footer>
 <script>
@@ -88,6 +121,8 @@ about(){return `<div class="w sec"><h1 style="font-size:30px">Une plateforme qui
 contact(){return `<div class="w sec" style="max-width:600px"><h1 style="font-size:28px">Contact et assistance</h1><form class="card" style="margin-top:14px" onsubmit="event.preventDefault();this.innerHTML='<h3>Message envoyé (simulation)</h3><p class=mu>Notre équipe répond sous 24 h ouvrées.</p>'"><label>Sujet</label><select><option>Question sur une réservation</option><option>Je suis professionnel</option><option>Signaler un problème</option><option>Proposer un nouveau service</option></select><label>E-mail</label><input type="email" required><label>Message</label><textarea rows="5" required></textarea><p><button class="btn">Envoyer</button></p></form></div>`},
 report(){return `<div class="w sec" style="max-width:760px"><div class="mu"><a href="#dash-part">Mon espace</a> › Rapport</div><h1 style="font-size:28px;margin:8px 0">Rapport d’inspection n° CR-2055</h1><div class="card"><div class="row sp"><div><b>Citroën C3 · 2018 · 74 200 km</b><div class="mu">Garage Expert Lemaire · 03/11/2026</div></div><span class="bdg">Rapport émis via Certia (démo)</span></div><table class="tb" style="margin-top:12px">${[['Moteur','Conforme'],['Freinage','Plaquettes à surveiller (≈ 30 %)'],['Carrosserie','Rayures légères, porte droite'],['Pneumatiques','Usure normale'],['Électronique','Aucun code défaut']].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table><p class="note">Avis global : véhicule en bon état général, aucun point bloquant. Document fictif pour la démonstration.</p><button class="btn o" onclick="navigator.clipboard&&navigator.clipboard.writeText(location.href);this.textContent='Lien copié ✓'">Copier le lien à joindre à mon annonce</button></div></div>`}};
 function upd(m){const f=S.f;if(m){f.cat=$('#fc').value;f.pmax=+$('#fp').value;f.dmax=+$('#fd').value;f.rmin=+$('#fr').value;f.av=$('#fa').checked;$('#lp').textContent=f.pmax+' €';$('#ld').textContent=f.dmax+' km'}const l=hits();$('#cnt').textContent=l.length+' professionnel(s) trouvé(s)';$('#res').innerHTML=l.length?l.map(card).join(''):'<div class="card">Aucun résultat. Élargissez la distance, le prix ou la ville.</div>'}
-function R(){const h=location.hash.slice(1)||'home',[a,b]=[h.split('-')[0],h.split('-')[1]];let k=h,arg;if(['cat','pro','book'].includes(a)&&b){k=a;arg=b}else if(a=='cat'||a=='pro'||a=='book')k='home';if(!V[k])k='home';if(k=='dash-part'||k=='dash-pro'){if(!S.user){S.next=0;k='login'}else if('dash-'+S.user!=k)k='dash-'+S.user}if((k=='cat'&&!cat(arg))||(['pro','book'].includes(k)&&!pro(arg)))k='home';$('#app').innerHTML=V[k](arg);scrollTo(0,0);ua()}
+function R(){const h=location.hash.slice(1)||'home',[a,b]=[h.split('-')[0],h.split('-')[1]];let k=h,arg;if(['cat','pro','book'].includes(a)&&b){k=a;arg=b}else if(a=='cat'||a=='pro'||a=='book')k='home';if(!V[k])k='home';if(k=='dash-part'||k=='dash-pro'){if(!S.user){S.next=0;k='login'}else if('dash-'+S.user!=k)k='dash-'+S.user}if((k=='cat'&&!cat(arg))||(['pro','book'].includes(k)&&!pro(arg)))k='home';$('#app').innerHTML=V[k](arg);scrollTo(0,0);ua();tg(false)}
+function tg(f){const m=$('#mn'),o=f===undefined?!m.classList.contains('open'):f;m.classList.toggle('open',o);$('#bg').setAttribute('aria-expanded',o);$('#bg').setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu');$('#bg').textContent=o?'✕':'☰'}
+$('#mn').addEventListener('click',()=>tg(false));addEventListener('keydown',e=>{if(e.key=='Escape')tg(false)});
 addEventListener('hashchange',R);R();
 </script></body></html>
